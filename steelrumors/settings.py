@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from django.core.urlresolvers import reverse_lazy
-from .secrets import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -21,6 +20,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = '0aj*ofc6#xddpmr@5t@e(^72*r_6%0c+71me8!+$-k!cpf#gs+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'links',
     'steelrumors',
+    'registration',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -105,3 +107,9 @@ STATIC_URL = '/static/'
 LOGIN_URL = reverse_lazy("login")
 LOGIN_REDIRECT_URL = reverse_lazy("home")
 LOGOUT_URL = reverse_lazy("logout")
+
+REGISTRATION_OPEN = True                # If True, users can register
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/accounts/login'
